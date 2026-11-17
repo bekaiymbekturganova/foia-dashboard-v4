@@ -6,6 +6,7 @@ and only changes the look to match Bekaiym's prototype:
   rounded cards, blue pill buttons for the questions and tabs, KPI-style summary tiles.
 - `docs/period.js` (new): the period bar at the top (timeline of FY2008–FY2025, click a start year then an end year,
   or All years / Last 10 / Last 5 / FY2025 only). It drives the dashboard's own Fiscal years input, which is now hidden in the sidebar.
+- `docs/search.js` (new): search boxes above the Agency and Component lists (type part of a name, or initials like DHS).
 - `docs/index.html`: new header (title, subtitle, "Prototype · for feedback" tag), Source Sans 3 font link, link to `theme.css`.
 Nothing in the data (`docs/data/foia.json`) or the dashboard code changed.
 
