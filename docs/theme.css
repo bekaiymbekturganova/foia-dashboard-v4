@@ -1,0 +1,118 @@
+/* =====================================================================
+   Bekaiym's "FOIA Annual Report Explorer" look on top of the v4 dashboard.
+   Loaded last, so it only restyles: no data, charts or logic change.
+   MuckRock data-viz palette: steel blue scale (600 = MuckRock blue).
+   ===================================================================== */
+:root{
+  --b50:#f2f7fc; --b100:#e1eef8; --b200:#c9e2f4; --b300:#a4d0ec; --b400:#78b7e2; --b500:#589bd9;
+  --b600:#4582cc; --b700:#3a6ebb; --b800:#355a98; --b900:#2f4c79; --b950:#21304a;
+  --red:#bc5046; --gold:#d4a92c; --green:#0d8e50; --purple:#a849b0;
+  --ink:#21304a; --muted:#5b6676;
+  --bs-body-font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --bs-body-color:var(--ink);
+  --bs-link-color:var(--b700); --bs-link-color-rgb:58,110,187;
+  --bs-border-color:var(--b100);
+}
+body.quarto-dashboard{ background:var(--b50) !important; color:var(--ink); font-family:var(--bs-body-font-family); }
+.quarto-dashboard .bslib-page-fill, .quarto-dashboard .page-layout-custom{ background:var(--b50); }
+
+/* ---------- header: white bar with a MuckRock-blue rule ---------- */
+#quarto-dashboard-header .navbar{ background:#fff !important; border-bottom:3px solid var(--b600); padding:10px 22px; }
+#quarto-dashboard-header .navbar-container{ padding:0; }
+.bk-brand{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; width:100%; }
+.bk-logo{ width:30px; height:30px; border-radius:7px; background:var(--b600); color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; flex:none; }
+.bk-title{ font-size:21px; font-weight:700; color:var(--b950); margin:0; text-decoration:none; }
+.bk-title:hover{ color:var(--b950); }
+.bk-sub{ color:var(--muted); font-size:13px; }
+.bk-tag{ margin-left:auto; border:1.5px solid var(--b600); color:var(--b700); font-weight:700; font-size:12px; padding:3px 10px; border-radius:999px; letter-spacing:.3px; white-space:nowrap; }
+@media (max-width:900px){ .bk-sub{ display:none; } .bk-tag{ margin-left:0; } }
+
+/* ---------- sidebar ---------- */
+.bslib-sidebar-layout > .sidebar{ background:#fff !important; border-right:1px solid var(--b100) !important; }
+.bslib-sidebar-layout > .sidebar > .sidebar-content, .bslib-sidebar-layout > .sidebar .html-fill-container{ color:var(--ink); }
+.bslib-sidebar-layout{ --_border:0 !important; }
+
+/* question list: blue pill for the chosen one (like the topic buttons) */
+.qpick-title{ font-size:12px !important; font-weight:700 !important; letter-spacing:.6px !important; color:var(--b800) !important; text-transform:uppercase; margin:.2rem 0 .35rem !important; }
+.qbtn{ border:0 !important; border-left:0 !important; border-radius:8px !important; padding:8px 10px !important; font-size:15px !important; font-weight:600; color:var(--ink) !important; }
+.qbtn .qno{ color:var(--b700); font-size:13px; font-weight:700; }
+.qbtn:hover{ background:var(--b50) !important; }
+.qbtn.on, .qbtn.on:hover, .qbtn.on:focus{ background:var(--b600) !important; color:#fff !important; }
+.qbtn.on .qno{ color:var(--b100) !important; }
+
+/* form labels: small uppercase blue, like "1 · AGENCY" */
+.sidebar form > label, .sidebar .cmp-label, .sidebar .years > label, .sidebar label.form-label{
+  display:block; font-size:12px !important; font-weight:700 !important; text-transform:uppercase; letter-spacing:.6px; color:var(--b800) !important; margin:16px 0 6px !important; }
+.sidebar input[type=radio] + label, .sidebar form label:has(input){ text-transform:none !important; letter-spacing:0 !important; font-size:14px !important; font-weight:400 !important; color:var(--ink) !important; margin:2px 0 !important; }
+.sidebar select, .sidebar input[type=text], .sidebar input[type=search], .sidebar .form-select{
+  width:100%; padding:8px 10px; border:1px solid var(--b200) !important; border-radius:8px !important; font:inherit; font-size:15px; background-color:#fff; color:var(--ink); box-shadow:none !important; }
+.sidebar select:focus, .sidebar input:focus{ outline:2px solid var(--b400); outline-offset:0; }
+.sidebar select:disabled{ background-color:var(--b50) !important; color:#9aa3ae !important; }
+.sidebar input[type=radio]{ accent-color:var(--b600); }
+.sidebar, .sidebar p, .sidebar .side-note{ font-size:13px; }
+.sidebar .side-note, .sidebar p{ color:var(--muted); }
+.chip{ background:var(--b100) !important; color:var(--b900); border-radius:999px !important; padding:2px 6px 2px 10px !important; font-weight:600; }
+.chip button{ color:var(--b700) !important; }
+.cmp-list{ border-color:var(--b200) !important; border-radius:8px !important; }
+.cmp-item.on, .cmp-item:hover{ background:var(--b50) !important; }
+
+/* ---------- cards ---------- */
+.quarto-dashboard .card{ border:1px solid var(--b100) !important; border-radius:12px !important; box-shadow:none !important; background:#fff; }
+.quarto-dashboard .card > .card-header{ background:#fff !important; border-bottom:1px solid var(--b100) !important; border-radius:12px 12px 0 0 !important; padding:10px 14px 0; }
+
+/* tabs (Chart / Tables / How the comparison is made) as chips */
+.quarto-dashboard .card-header .nav-tabs{ border:0 !important; gap:6px; padding-bottom:10px; }
+.quarto-dashboard .card-header .nav-tabs .nav-link{ border:1px solid var(--b200) !important; border-radius:999px !important; padding:5px 14px !important; font-size:14px; font-weight:600; color:var(--ink) !important; background:#fff; margin:0 !important; }
+.quarto-dashboard .card-header .nav-tabs .nav-link:hover{ border-color:var(--b600) !important; }
+.quarto-dashboard .card-header .nav-tabs .nav-link.active{ background:var(--b600) !important; border-color:var(--b600) !important; color:#fff !important; }
+
+/* question header: big title + takeaway strip */
+.qhead{ font-size:20px !important; font-weight:700; color:var(--b950); line-height:1.35 !important; }
+.qhead .qnum{ display:inline-block; background:var(--b600); color:#fff; font-weight:700; font-size:13px; border-radius:6px; padding:2px 8px; margin-right:10px !important; vertical-align:3px; }
+.qhead strong, .qhead b{ color:var(--b950); }
+.qhead .sel{ color:var(--muted) !important; font-size:14px !important; font-weight:400; margin-top:4px !important; }
+.qhead .glance{ font-weight:400; background:var(--b50) !important; color:var(--ink) !important; border-radius:8px !important; padding:8px 12px !important; font-size:14px !important; margin-top:8px !important; }
+.qhead .glance b, .qhead .glance strong{ color:var(--b950); }
+
+/* summary tiles: KPI cards */
+.tiles{ gap:12px !important; }
+.tile{ background:#fff; border:1px solid var(--b100) !important; border-radius:12px !important; padding:12px 14px !important; }
+.tlabel{ font-size:12px !important; color:var(--muted) !important; text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+.tval{ font-size:26px !important; font-weight:700 !important; color:var(--b950); margin-top:2px; }
+.tchg{ font-size:13px !important; color:var(--muted) !important; }
+div.value-box-area span.vb{ font-weight:700; color:var(--b950); }
+
+/* chart titles */
+.pair h6, .tcap h6{ font-size:17px !important; font-weight:700 !important; color:var(--b950); margin-bottom:8px !important; }
+.side-note, .chart-note{ color:var(--muted) !important; }
+.quarto-dashboard svg text{ font-family:var(--bs-body-font-family); }
+figure svg[class^="plot"]{ font-family:var(--bs-body-font-family) !important; font-size:12px; }
+
+/* table view toggle */
+.tview{ border:0 !important; gap:6px; display:inline-flex; flex-wrap:wrap; }
+.tvbtn{ white-space:nowrap; border:1px solid var(--b200) !important; border-radius:999px !important; padding:5px 14px !important; font-weight:600; font-size:14px !important; }
+.tvbtn + .tvbtn{ border-left:1px solid var(--b200) !important; }
+.tvbtn.on{ background:var(--b600) !important; border-color:var(--b600) !important; color:#fff !important; }
+.tab-pane table{ font-variant-numeric:tabular-nums; }
+.tab-pane table thead th{ background:var(--b50) !important; color:var(--b900); }
+
+/* "How the comparison is made" */
+.how{ color:var(--ink); }
+.how h1,.how h2,.how h3,.how h4,.how h5,.how h6{ color:var(--b950); font-weight:700; }
+
+/* ---------- start page: storyline cards ---------- */
+.stories-head h2{ font-size:22px !important; font-weight:700 !important; color:var(--b950) !important; }
+.stories-head p{ font-size:14px !important; color:var(--muted) !important; }
+.story{ border:1px solid var(--b100) !important; border-radius:12px !important; padding:16px 18px 14px !important; }
+.story .kicker{ color:var(--b600) !important; font-size:12px !important; font-weight:700 !important; letter-spacing:.6px !important; }
+.story h3{ font-size:18px !important; font-weight:700 !important; color:var(--b950) !important; }
+.story .body{ font-size:14px !important; color:var(--ink) !important; }
+.story .foot{ font-size:12px !important; color:var(--muted) !important; }
+.story .go{ border:1px solid var(--b600) !important; background:var(--b600) !important; color:#fff !important; border-radius:999px !important; padding:5px 14px !important; font-weight:600; font-size:13px !important; }
+.story .go:hover{ background:var(--b700) !important; border-color:var(--b700) !important; }
+.story .tip{ border-color:var(--b200) !important; border-radius:8px !important; }
+.ac-findings{ border-top-color:var(--b100) !important; }
+
+/* page header card on the start page */
+.quarto-dashboard .card-body{ color:var(--ink); }
+.qhead .warn{ font-size:14px; font-weight:400; }

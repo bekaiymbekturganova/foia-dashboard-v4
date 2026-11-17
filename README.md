@@ -1,3 +1,14 @@
+# FOIA Annual Report Explorer (v4 content, Bekaiym's design)
+
+This branch (`bekaiym-style`) keeps Tianqi's v4 dashboard as it is (same data, questions, charts, tables and storyline cards)
+and only changes the look to match Bekaiym's prototype:
+- `docs/theme.css` (new, loaded last): white header with a MuckRock-blue rule, Source Sans 3, light-blue page,
+  rounded cards, blue pill buttons for the questions and tabs, KPI-style summary tiles.
+- `docs/index.html`: new header (title, subtitle, "Prototype · for feedback" tag), Source Sans 3 font link, link to `theme.css`.
+Nothing in the data (`docs/data/foia.json`) or the dashboard code changed.
+
+---
+
 # Federal FOIA Dashboard (v4: the prototype plus storyline cards)
 
 Draft v4 of the BU Spark! DS 701 prototype FOIA dashboard for MuckRock's Data Liberation Project. Not an official MuckRock product.
